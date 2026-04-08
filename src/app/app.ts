@@ -1,5 +1,5 @@
 ﻿import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, signal } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,7 @@ import { Component, OnDestroy, signal } from '@angular/core';
   styleUrl: './app.css'
 })
 export class App implements OnDestroy {
+  @ViewChild('bgAudio') private bgAudio?: ElementRef<HTMLAudioElement>;
   protected readonly coupleNames = "Purushottam Wed's Lina";
   protected readonly weddingDate = new Date('2026-04-24T18:30:00+05:30');
   protected readonly haldiDate = new Date('2026-04-23T18:30:00+05:30');
@@ -39,7 +40,10 @@ export class App implements OnDestroy {
   constructor() {
     this.updateCountdown();
     this.timerId = setInterval(() => this.updateCountdown(), 1000);
-    this.loaderTimeoutId = setTimeout(() => this.showCountdown.set(true), 5000);
+    this.loaderTimeoutId = setTimeout(() => {
+      this.showCountdown.set(true);
+      this.playBackgroundAudio();
+    }, 5000);
     this.crackerTimerId = setInterval(() => {
       this.crackerBursts.set(this.makeCrackers());
     }, 2800);
@@ -125,5 +129,17 @@ export class App implements OnDestroy {
     }
     video.play();
     video.controls = true;
+  }
+
+  private playBackgroundAudio(): void {
+    const audio = this.bgAudio?.nativeElement;
+    if (!audio) {
+      return;
+    }
+    audio.volume = 0.45;
+    const playPromise = audio.play();
+    if (playPromise) {
+      playPromise.catch(() => undefined);
+    }
   }
 }

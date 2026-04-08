@@ -407,6 +407,10 @@
   padding: 24px;
 }
 
+.bg-audio {
+  display: none;
+}
+
 .preloader::before {
   content: "";
   position: absolute;
