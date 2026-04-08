@@ -928,8 +928,8 @@
 
 .media-row .invitation-card {
   animation-delay: 0.15s;
-  height: auto;
   min-height: 500px;
+  height: auto;
 }
 
 .media-row .contact-card {
