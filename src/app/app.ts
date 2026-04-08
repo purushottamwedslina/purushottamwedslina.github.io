@@ -124,6 +124,7 @@ export class App implements OnDestroy {
     if (!video) {
       return;
     }
+    this.pauseBackgroundAudio();
     if (frame) {
       frame.classList.add('is-playing');
     }
@@ -158,5 +159,13 @@ export class App implements OnDestroy {
         window.addEventListener('keydown', resume, { once: true });
       });
     }
+  }
+
+  private pauseBackgroundAudio(): void {
+    const audio = this.bgAudio?.nativeElement;
+    if (!audio) {
+      return;
+    }
+    audio.pause();
   }
 }
