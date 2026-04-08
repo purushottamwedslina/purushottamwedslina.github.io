@@ -1317,6 +1317,26 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .contact-map iframe {
+    height: 190px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-map {
+    margin-top: 12px;
+  }
+
+  .contact-map iframe {
+    height: 170px;
+  }
+
+  .direction-hint {
+    font-size: 11px;
+  }
+}
+
 @media (max-width: 600px) {
   .double-hearts {
     grid-template-columns: 1fr;
