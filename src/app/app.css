@@ -922,10 +922,14 @@
 
 .media-row .video-card {
   animation-delay: 0.05s;
+  min-height: 310px;
+  height: auto;
 }
 
 .media-row .invitation-card {
   animation-delay: 0.15s;
+  height: auto;
+  min-height: 500px;
 }
 
 .media-row .contact-card {
@@ -1420,9 +1424,6 @@
   .about-card {
     width: 90%;
   }
-  .details{
-    width: 100%;
-  }
 }
 
 @media (max-width: 600px) {
@@ -1432,6 +1433,7 @@
 
   .media-row {
     flex-direction: column;
+    align-items: center;
   }
 
   .countdown-section {
@@ -1453,12 +1455,21 @@
     width: 80%;
   }
 
-  .details{
+  .details {
     width: 100%;
   }
 
-  .media-row>* {
+  .media-row > * {
     width: 80%;
     flex: 1 1 0;
+  }
+
+  .video-frame {
+    min-height: 260px;
+  }
+
+  .patrika-preview {
+    min-height: 220px;
+    object-fit: cover;
   }
 }
