@@ -137,9 +137,26 @@ export class App implements OnDestroy {
       return;
     }
     audio.volume = 0.45;
+    const tryPlay = () => {
+      const playPromise = audio.play();
+      if (playPromise) {
+        playPromise.catch(() => undefined);
+      }
+    };
     const playPromise = audio.play();
     if (playPromise) {
-      playPromise.catch(() => undefined);
+      playPromise.catch(() => {
+        if (typeof window === 'undefined') {
+          return;
+        }
+        const resume = () => {
+          tryPlay();
+          window.removeEventListener('pointerdown', resume);
+          window.removeEventListener('keydown', resume);
+        };
+        window.addEventListener('pointerdown', resume, { once: true });
+        window.addEventListener('keydown', resume, { once: true });
+      });
     }
   }
 }
