@@ -39,7 +39,7 @@ export class App implements OnDestroy {
   constructor() {
     this.updateCountdown();
     this.timerId = setInterval(() => this.updateCountdown(), 1000);
-    this.loaderTimeoutId = setTimeout(() => this.showCountdown.set(true), 10000);
+    this.loaderTimeoutId = setTimeout(() => this.showCountdown.set(true), 5000);
     this.crackerTimerId = setInterval(() => {
       this.crackerBursts.set(this.makeCrackers());
     }, 2800);
