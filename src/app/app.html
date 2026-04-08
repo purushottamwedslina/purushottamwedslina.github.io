@@ -1,0 +1,298 @@
+﻿<div class="preloader" *ngIf="!showCountdown()">
+  <div class="preloader-content">
+    <p class="preloader-brand">{{ coupleNames }}</p>
+    <h2 class="preloader-title">WEDDING COMING SOON</h2>
+    <div class="preloader-timer">
+      {{ formatTime(countdown().days) }} Days : {{ formatTime(countdown().hours) }} Hours :
+      {{ formatTime(countdown().minutes) }} Minutes : {{ formatTime(countdown().seconds) }} Seconds
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <section class="countdown-section">
+    <div class="countdown-card">
+      <span class="coming-soon-tag">Coming Soon</span>
+
+      <div class="countdown" *ngIf="!isLaunched; else launched">
+        <div class="time-block">
+          <span class="time">{{ countdown().days }}</span>
+          <span class="label">Days</span>
+        </div>
+        <div class="time-block">
+          <span class="time">{{ countdown().hours }}</span>
+          <span class="label">Hours</span>
+        </div>
+        <div class="time-block">
+          <span class="time">{{ countdown().minutes }}</span>
+          <span class="label">Minutes</span>
+        </div>
+        <div class="time-block">
+          <span class="time">{{ countdown().seconds }}</span>
+          <span class="label">Seconds</span>
+        </div>
+      </div>
+
+      <ng-template #launched>
+        <div class="launched">It is wedding time! Thank you for being part of our day.</div>
+      </ng-template>
+    </div>
+  </section>
+
+  <div class="petal-rain" aria-hidden="true">
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+  </div>
+
+  <div class="cracker-sparks" aria-hidden="true">
+    <div class="cracker" *ngFor="let cracker of crackerBursts()" [style.--x.%]="cracker.x" [style.--y.%]="cracker.y"
+      [style.--scale]="cracker.scale" [style.animationDelay]="cracker.delay + 's'">
+      <span class="spark" *ngFor="let _ of sparkArray"></span>
+    </div>
+  </div>
+
+  <header class="hero hero--center">
+    <div class="hero-right">
+      <div class="double-hearts" aria-label="Two heart frames with ribbon and wedding photos">
+        <div class="heart-card">
+          <div class="heart-flip" aria-label="Groom photo and name">
+            <svg class="heart-photo heart-face heart-front" viewBox="0 0 220 200" role="img">
+              <defs>
+                <clipPath id="heart-clip-groom">
+                  <path
+                    d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z" />
+                </clipPath>
+                <filter id="shadow-groom" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#3f4d8a" flood-opacity="0.35" />
+                </filter>
+              </defs>
+              <rect width="220" height="200" fill="url(#groom-grad)" clip-path="url(#heart-clip-groom)" />
+              <image href="/images/purushottam.jpg" x="0" y="-5" width="220" height="220"
+                preserveAspectRatio="xMidYMid slice" clip-path="url(#heart-clip-groom)" />
+              <path class="heart-outline"
+                d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z"
+                fill="none" stroke="#ffffff" stroke-width="6" filter="url(#shadow-groom)" />
+              <defs>
+                <linearGradient id="groom-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#d7e6ff" />
+                  <stop offset="1" stop-color="#b9c7ff" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <svg class="heart-photo heart-face heart-back" viewBox="0 0 220 200" role="img" aria-label="Groom name">
+              <defs>
+                <filter id="shadow-groom-back" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#3f4d8a" flood-opacity="0.35" />
+                </filter>
+              </defs>
+              <path
+                d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z"
+                fill="#d7e6ff" filter="url(#shadow-groom-back)" />
+              <path class="heart-outline"
+                d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z"
+                fill="none" stroke="#ffffff" stroke-width="6" />
+              <text x="110" y="80" text-anchor="middle" font-family="Algerian, Trebuchet MS, sans-serif" font-size="24"
+                letter-spacing="2" fill="#3f4d8a">Purushottam</text>
+              <text x="110" y="100" text-anchor="middle" font-family="Monotype Corsiva, Trebuchet MS, sans-serif"
+                font-size="12" letter-spacing="1" fill="#3f4d8a">Smt. Sakubai and Shri. Shriram</text>
+              <text x="110" y="110" text-anchor="middle" font-family="Monotype Corsiva, Trebuchet MS, sans-serif"
+                font-size="12" letter-spacing="1" fill="#3f4d8a">Shiwarkar's son, Barwha</text>
+
+            </svg>
+          </div>
+          <div class="ribbon">
+            <span>Purushottam</span>
+
+          </div>
+        </div>
+
+        <div class="rose-wrap" aria-label="Wedding hands decoration">
+          <img class="wedding-hand" src="/images/wedding-hand.png" alt="Wedding hands" />
+          <p class="names">{{ coupleNames }}</p>
+        </div>
+
+        <div class="heart-card">
+          <div class="heart-flip" aria-label="Bride photo and name">
+            <svg class="heart-photo heart-face heart-front" viewBox="0 0 220 200" role="img">
+              <defs>
+                <clipPath id="heart-clip-bride">
+                  <path
+                    d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z" />
+                </clipPath>
+                <filter id="shadow-bride" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#b4556b" flood-opacity="0.35" />
+                </filter>
+              </defs>
+              <rect width="220" height="200" fill="url(#bride-grad)" clip-path="url(#heart-clip-bride)" />
+              <image href="/images/lina.jpg" x="0" y="-5" width="220" height="220" preserveAspectRatio="xMidYMid slice"
+                clip-path="url(#heart-clip-bride)" />
+              <path class="heart-outline"
+                d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z"
+                fill="none" stroke="#ffffff" stroke-width="6" filter="url(#shadow-bride)" />
+              <defs>
+                <linearGradient id="bride-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ffd5e4" />
+                  <stop offset="1" stop-color="#ffc0d4" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <svg class="heart-photo heart-face heart-back" viewBox="0 0 220 200" role="img" aria-label="Bride name">
+              <defs>
+                <filter id="shadow-bride-back" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#b4556b" flood-opacity="0.35" />
+                </filter>
+              </defs>
+              <path
+                d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z"
+                fill="#ffd5e4" filter="url(#shadow-bride-back)" />
+              <path class="heart-outline"
+                d="M110 185s-70-43-95-85C-5 60 15 20 50 20c25 0 40 14 60 35 20-21 35-35 60-35 35 0 55 40 35 80-25 42-95 85-95 85z"
+                fill="none" stroke="#ffffff" stroke-width="6" />
+              <text x="110" y="80" text-anchor="middle" font-family="Algerian, Trebuchet MS, sans-serif" font-size="24"
+                letter-spacing="2" fill="#b4556b">Lina</text>
+              <text x="110" y="100" text-anchor="middle" font-family="Monotype Corsiva, Trebuchet MS, sans-serif"
+                font-size="12" letter-spacing="1" fill="#b4556b">Smt. Nandabai and Shri. Maroti</text>
+              <text x="110" y="110" text-anchor="middle" font-family="Monotype Corsiva, Trebuchet MS, sans-serif"
+                font-size="12" letter-spacing="1" fill="#b4556b">Mohankar's doughter, waygaon</text>
+
+            </svg>
+          </div>
+          <div class="ribbon">
+            <span>Lina</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="about-wedding">
+    <div class="detail-card about-card">
+      <h3>About The Wedding</h3>
+      <p>
+        A newlywed couple is embarking on a new year of their shared journey. With the sacred fire as their witness and
+        the blessings of Lord Ganesha, they seek your best wishes for the path ahead.
+        The Shiwarkar family extends a warm and heartfelt invitation to you to join us on this occasion.
+      </p>
+    </div>
+  </section>
+
+  <section class="details">
+    <div class="detail-card">
+      <h3>Haldi Ceremony</h3>
+      <ul>
+        <li><strong>Date:</strong> {{ haldiDate | date: 'fullDate' }} at 06:00 PM</li>
+        <li><strong>Dress code:</strong> Mustard, Lemon Yellow, Sunflower Yellow, Sunshine Yellow, and Marigold.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card">
+      <h3>Wedding Schedule</h3>
+      <ul class="schedule">
+        <li>
+          <span>10:30 AM</span>
+          <span>Guest arrivals & welcome drinks</span>
+        </li>
+        <li>
+          <span>12:30 PM</span>
+          <span>Ceremony begins</span>
+        </li>
+        <li>
+          <span>1:00 PM</span>
+          <span>Family blessings & photos</span>
+        </li>
+        <li>
+          <span>1:15 PM</span>
+          <span>Lunch opens</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="detail-card reception-card" [style.--drop-x1.px]="dropX1" [style.--drop-y1.px]="dropY1"
+      [style.--drop-x2.px]="dropX2" [style.--drop-y2.px]="dropY2" [style.--drop-x3.px]="dropX3"
+      [style.--drop-y3.px]="dropY3">
+      <h3>Reception</h3>
+      <ul>
+        <li><strong>Arrival:</strong> Guests welcome from 5:30 PM</li>
+        <li><strong>Welcome:</strong> Evening celebration and family greetings.</li>
+        <li><strong>Dinner:</strong> Dinner and dancing to follow.</li>
+        <li><strong>Music:</strong> Live beats and joyful moments.</li>
+        <li><strong>Dress:</strong> Festive attire encouraged.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="media-row">
+    <div class="video-card">
+      <div class="video-frame" #videoFrame>
+        <video #weddingVideo class="wedding-video" preload="metadata" poster="/images/poster.png">
+          <source src="/video/jitu-weds-lina.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <button class="video-play" type="button" (click)="playVideo(weddingVideo, videoFrame)"
+          aria-label="Play wedding video">
+          Play
+        </button>
+      </div>
+      <a class="video-download" href="/video/jitu-weds-lina.mp4" download="wedding-invitation-film.mp4">
+        Download Video
+      </a>
+    </div>
+
+    <div class="invitation-card">
+      <div>
+        <h3>Wedding Invitation</h3>
+        <p>Keep the wedding invite handy and share it with your family.</p>
+      </div>
+      <img class="patrika-preview" src="/images/patrika.png" alt="Wedding invitation patrika" />
+      <a class="invitation-button" href="/images/patrika.png" download="wedding-invitation.png">
+        Download Invitation
+      </a>
+    </div>
+
+    <div class="detail-card contact-card">
+      <span class="lightning lightning-a" aria-hidden="true"></span>
+      <span class="lightning lightning-b" aria-hidden="true"></span>
+      <span class="lightning lightning-c" aria-hidden="true"></span>
+      <h3>Stay In Touch</h3>
+      <p>For any need or information about the event, please feel free to reach out.</p>
+      <div class="contact">
+        <div>
+          <span class="meta-label">Call</span>
+          <span class="meta-value">+91 94231 20593</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>With love, {{ coupleNames }}</p>
+  </footer>
+</div>
